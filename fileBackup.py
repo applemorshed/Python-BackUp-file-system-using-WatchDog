@@ -2,7 +2,7 @@
 # Date: April 12 2020
 
 # ------------Note-----------------
-# Make sure destination folder is not exists. if exists remove the destination folder. if destination folder already
+# Make sure destination folder is not exists. if exists remove or delete the destination folder. if destination folder already
 # exists shutil can not copy the source folder .
 
 
@@ -91,15 +91,14 @@ class FileBackupManager:
         self.observer.start()
 
 
-
     def stop(self):
         self.observer.stop()
         print("Watchdog/Backup Process Terminated")
         self.observer.join()
 
 
-src = "/Users/Hossain/Desktop/rwprog"
-dst = "/Users/Hossain/Desktop/dst_test"
+src = "/Users/Hossain/Desktop/rwprog" # Source file which we want to make backup.
+dst = "/Users/Hossain/Desktop/dst_test" # Location/destination where we want to create backup.
 watch = FileBackupManager()
 with ThreadPoolExecutor(max_workers=5) as executor:
     executor.submit(watch.start, src, dst)
